@@ -2,6 +2,8 @@ package com.luster.fistIdeaItem;
 
 import com.luster.fistIdeaItem.app.AppApplication;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import com.luster.fistIdeaItem.dao.IUserRepository;
@@ -19,6 +21,16 @@ public class UserServiceTest {
     @Autowired
     IUserRepository iUserRepository;
 
+    @Before
+    public void before(){
+        iUserRepository.deleteAll();
+    }
+
+    @After
+    public void after(){
+        iUserRepository.deleteAll();
+    }
+
     @Test
     public void testAddUser(){
         User user=new User();
@@ -26,5 +38,6 @@ public class UserServiceTest {
         user.setAge(25);
         iUserRepository.save(user);
     }
+
 
 }
