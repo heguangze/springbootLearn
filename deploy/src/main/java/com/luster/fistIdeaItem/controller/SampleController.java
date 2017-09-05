@@ -12,19 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SampleController {
 
-    @Autowired
-    IUserRepository iUserRepository;
-
     @RequestMapping("/get")
     String home() {
         return "Hello World!";
     }
 
-    @RequestMapping("/addUser")
-    void  addUser(){
-        User user=new User();
-        user.setName("luser");
-        user.setAge(25);
-        iUserRepository.save(user);
-    }
 }
