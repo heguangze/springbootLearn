@@ -21,15 +21,15 @@ public class UserServiceTest {
     @Autowired
     IUserRepository iUserRepository;
 
-    @Before
-    public void before(){
-        iUserRepository.deleteAll();
-    }
-
-    @After
-    public void after(){
-        iUserRepository.deleteAll();
-    }
+//    @Before
+//    public void before(){
+//        iUserRepository.deleteAll();
+//    }
+//
+//    @After
+//    public void after(){
+//        iUserRepository.deleteAll();
+//    }
 
     @Test
     public void testAddUser(){
