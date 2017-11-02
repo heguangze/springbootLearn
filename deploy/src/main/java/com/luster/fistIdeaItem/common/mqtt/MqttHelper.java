@@ -8,14 +8,13 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
  */
 public class MqttHelper {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
         String topic        = "MQTT Examples";
         String content      = "Message from MqttPublishSample";
-        int qos             = 2;
-        String broker       = "tcp://172.16.3.89:1883";//89
-        String clientId     = "JavaSample";
-        String userName="luster";
+        String broker       = "tcp://14.118.131.236:1883";//89
+        String clientId     = "JavaSample232";
+        String userName="luster2";
         MemoryPersistence persistence = new MemoryPersistence();
 
         try {
@@ -32,20 +31,23 @@ public class MqttHelper {
             System.out.println("Connected");
 
             //订阅消息
-            sampleClient.subscribe("MQTT Examples",1);
+            String[]topicFilter=new String[]{"CM/DeviceMessage/Soldier/#","CM/DeviceTracingPoint/Soldier/MT300/#"};
+            int[]qos=new int[]{2,2};
+            sampleClient.subscribe(topicFilter,qos);
+//            sampleClient.subscribe("CM/DeviceTracingPoint/#",1);
             System.out.println("Message subscribed");
 
             //推送消息
-            System.out.println("Publishing message: "+content);
-            MqttMessage message = new MqttMessage(content.getBytes());
-            message.setQos(qos);
-            sampleClient.publish(topic, message);
-            System.out.println("Message published");
+//            System.out.println("Publishing message: "+content);
+//            MqttMessage message = new MqttMessage(content.getBytes());
+//            message.setQos(qos);
+//            sampleClient.publish(topic, message);
+//            System.out.println("Message published");
 
             //断开连接
-            sampleClient.disconnect();
-            System.out.println("Disconnected");
-            System.exit(0);
+//            sampleClient.disconnect();
+//            System.out.println("Disconnected");
+//            System.exit(0);
         } catch(MqttException me) {
             System.out.println("reason "+me.getReasonCode());
             System.out.println("msg "+me.getMessage());

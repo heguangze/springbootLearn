@@ -121,7 +121,12 @@ public class HttpRequestUtils {
         return result;
     }
 
-    public static void sendPostJson(String uri, JSONObject obj) {
+    /**
+     * @param uri
+     * @param json
+     * @param authorization
+     */
+    public static void sendPostJson(String uri, String json, String authorization) {
         //创建连接
         URL url = null;
         try {
@@ -145,7 +150,7 @@ public class HttpRequestUtils {
         connection.setUseCaches(false);
         connection.setInstanceFollowRedirects(true);
         connection.setRequestProperty("Content-Type", "application/json");
-        connection.setRequestProperty("Authorization", "o_LVTPFpsM_W6TRNbttP99jcL-OfkEHiz9VVrgmXaZx3n71_3tjHEQ==");
+        connection.setRequestProperty("Authorization", authorization);
         try {
             connection.connect();
         } catch (IOException e) {
@@ -158,7 +163,6 @@ public class HttpRequestUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String json = obj.toString();
         try {
             System.out.println(json);
             out.write(json.getBytes("utf-8"));//utf-8编码
@@ -208,13 +212,19 @@ public class HttpRequestUtils {
     }
 
     public static void main(String[] args) throws Exception {
-        String url="http://172.16.6.88:8088/api/resourcePool/add";
-        JSONObject obj=new JSONObject();
-        obj.put("name","光泽的资源池1");
-        obj.put("position","61");
-        obj.put("useLinkedConfig",true);
-        obj.put("connectedPoolIds",new ArrayList<>());
-        sendPostJson(url,obj);
+        String url = "http://172.16.6.88:8088/api/user/register";
+        JSONObject obj = new JSONObject();
+        obj.put("account", "db37");
+        obj.put("code", "db37");
+        obj.put("confirmPassword", "13890909090");
+        obj.put("inheritOrganizationPower", false);
+        obj.put("name", "db37");
+        obj.put("organizationId", "25");
+        obj.put("password", "13890909090");
+        obj.put("phoneNumber", "13890909090");
+        obj.put("roles", new ArrayList<>());
+        obj.put("sex", "Man");
+        sendPostJson(url, obj.toString(), "o_LVTPFpsM_W6TRNbttP99jcL-OfkEHiz9VVrgmXaZx3n71_3tjHEQ==");
 
 //        String url = "http://172.16.6.88:8088/api/resourcePool/queryAccessiblesResourcePool";
 //        sendGet(url, "resourcePoolId=14&page=0&size=10&sort=");
