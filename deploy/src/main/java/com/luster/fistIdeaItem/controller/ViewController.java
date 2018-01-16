@@ -19,5 +19,10 @@ public class ViewController {
         return new ModelAndView("mqtt");
     }
 
+    @RequestMapping("/test")
+    public ModelAndView test(){
+        return new ModelAndView("test");
+    }
+
 
 }
