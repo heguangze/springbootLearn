@@ -63,5 +63,11 @@ public class UserServiceTest {
         System.out.println(userCache.get("luster", User.class).getAge());
     }
 
+    @Test
+    public void testFindUser(){
+        User user=iUserRepository.findOne(6L);
+        System.out.println(user);
+    }
+
 
 }
