@@ -25,9 +25,9 @@
           config: ehcache.xml
     server:
       port: 9099
-      ssl:
-        key-store: tomcat.keystore
-        key-store-password: 111111
-        key-store-type: JKS
-        key-alias: tomcat
-        client-auth: want
+#      ssl:
+#        key-store: tomcat.keystore
+#        key-store-password: 111111
+#        key-store-type: JKS
+#        key-alias: tomcat
+#        client-auth: want

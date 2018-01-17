@@ -4,7 +4,7 @@
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="deploy" />
+          <element id="module-output" name="demo" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1" />
@@ -75,9 +75,9 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/deploy/target/fistIdeaItem-deploy/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/demo/target/fistIdeaItem-deploy/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="deploy/web/Web" />
+      <element id="javaee-facet-resources" facet="demo/web/Web" />
     </root>
   </artifact>
 </component>
