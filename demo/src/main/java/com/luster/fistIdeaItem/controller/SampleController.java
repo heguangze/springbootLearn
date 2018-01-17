@@ -1,7 +1,9 @@
 package com.luster.fistIdeaItem.controller;
 
 import com.luster.fistIdeaItem.dao.IUserRepository;
+import com.luster.fistIdeaItem.entity.QUser;
 import com.luster.fistIdeaItem.entity.User;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class SampleController {
+
+    @Autowired
+    IUserRepository iUserRepository;
+    @Autowired
+    JPAQueryFactory jpaQueryFactory;
 
     @RequestMapping("/get")
     String home() {
@@ -23,6 +30,13 @@ public class SampleController {
         long totalM = Runtime.getRuntime().totalMemory();//返回 Java 虚拟机中的内存总量。
         long usedM = Runtime.getRuntime().freeMemory();//返回 Java 虚拟机中的空闲内存量。
         return "maxM=" + maxM/1024/1024 + ",totalM=" + totalM/1024/1024 + ",freeM=" + usedM/1024/1024;
+    }
+    @RequestMapping("/getUserRoles")
+    String getUserRoles(){
+        QUser qUser=QUser.user;
+        User user=jpaQueryFactory.selectFrom(qUser).fetchFirst();
+
+        return user.toString();
     }
 
 }

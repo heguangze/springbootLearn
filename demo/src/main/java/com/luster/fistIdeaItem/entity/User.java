@@ -15,8 +15,8 @@ public class User {
     private Long id;
     private String name;
     private int age;
-    @ManyToMany
-    private Set<Role> roles=new HashSet<>();
+    @ManyToMany(targetEntity = Role.class, mappedBy = "users")
+    private Set<Role> roles = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -58,5 +58,10 @@ public class User {
                 ", age=" + age +
                 ", roles=" + roles +
                 '}';
+    }
+
+    @PreRemove
+    protected void onRemove() {
+        this.roles.forEach(e->e.getUsers().remove(this));
     }
 }

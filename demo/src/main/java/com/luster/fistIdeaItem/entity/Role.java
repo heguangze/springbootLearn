@@ -1,9 +1,8 @@
 package com.luster.fistIdeaItem.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by dell on 2017-9-4.
@@ -15,6 +14,9 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @ManyToMany(targetEntity = User.class)
+    @JoinTable(name = "role_user_mapping")
+    private Set<User> users = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -38,5 +40,13 @@ public class Role {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

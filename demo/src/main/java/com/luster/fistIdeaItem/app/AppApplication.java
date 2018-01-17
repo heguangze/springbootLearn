@@ -1,5 +1,6 @@
 package com.luster.fistIdeaItem.app;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
@@ -14,6 +15,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 
 /**
  * Created by dell on 2017-8-16.
@@ -25,9 +29,20 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableCaching
 public class AppApplication {
 
+    @PersistenceContext
+    private EntityManager em;
+
     public static void main(String[] args) throws Exception {
         SpringApplication.run(AppApplication.class, args);
     }
+
+    @Bean
+    public JPAQueryFactory jpaQueryFactory() {
+        return new JPAQueryFactory(em);
+    }
+
+
+
     /**
      * it's for set http url auto change to https
      */
