@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashSet;
@@ -22,8 +24,8 @@ import java.util.Set;
 /**
  * Created by dell on 2017-9-5.
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = AppApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest {
 
     @Autowired
