@@ -33,12 +33,12 @@ public class RoleServiceTest {
 
 
     @Before
-    public void before(){
-        iRoleRepository.deleteAll();
+    public void before() {
+//        iRoleRepository.deleteAll();
     }
 
     @After
-    public void after(){
+    public void after() {
 //        iRoleRepository.deleteAll();
     }
 
@@ -48,15 +48,20 @@ public class RoleServiceTest {
         user.setName("luser");
         user.setAge(25);
         iUserRepository.save(user);
-        Role role=new Role();
+        Role role = new Role();
         role.setName("管理员");
-        Set<User> users=new HashSet<>();
+        Set<User> users = new HashSet<>();
         users.add(user);
         role.setUsers(users);
         iRoleRepository.save(role);
 
-        User oldUser=iUserRepository.findOne(user.getId());
+//        User oldUser = iUserRepository.findOne(user.getId());
 //        System.out.println(oldUser.getRoles());//测试模式，无法懒加载
+    }
+
+    @Test
+    public void deleteAll() {
+        iRoleRepository.deleteAllInBatch();
     }
 
 }

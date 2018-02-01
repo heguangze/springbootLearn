@@ -34,8 +34,7 @@ public class UserServiceTest {
     @Autowired
     IRoleRepository iRoleRepository;
 
-    @Autowired
-    private CacheManager cacheManager;
+
 
     @Before
     public void before(){
@@ -59,9 +58,6 @@ public class UserServiceTest {
         roles.add(role);
         user.setRoles(roles);
         iUserRepository.save(user);
-        Cache userCache = cacheManager.getCache("user");
-        userCache.put("luster", user);
-        System.out.println(userCache.get("luster", User.class).getId());
     }
 
 }
