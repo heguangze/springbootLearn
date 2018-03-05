@@ -4,7 +4,7 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 /**
- * Created by dell on 2017-8-10.
+ * Created by luster on 2017-8-10.
  */
 public class MqttHelper {
 
