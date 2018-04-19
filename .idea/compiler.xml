@@ -8,17 +8,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="demo" />
         <module name="deploy" />
-        <module name="eurekaclient" />
-        <module name="EurekaServer" />
-        <module name="serviceribbon" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="adb" target="1.8" />
       <module name="demo" target="1.8" />
       <module name="deploy" target="1.8" />
       <module name="eurekaclient" target="1.8" />
       <module name="EurekaServer" target="1.8" />
-      <module name="fistIdeaItem" target="1.6" />
+      <module name="fistIdeaItem" target="1.8" />
       <module name="serviceribbon" target="1.8" />
     </bytecodeTargetLevel>
   </component>
