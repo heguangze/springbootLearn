@@ -1,12 +1,19 @@
 package com.luster.fistIdeaItem.controller;
 
-import com.luster.fistIdeaItem.dao.IUserRepository;
-import com.luster.fistIdeaItem.entity.Person;
-import com.luster.fistIdeaItem.entity.QUser;
-import com.luster.fistIdeaItem.entity.User;
+import com.luster.fistIdeaItem.primary.dao.IUserRepository;
+import com.luster.fistIdeaItem.primary.entity.QUser;
+import com.luster.fistIdeaItem.primary.entity.User;
+import com.luster.fistIdeaItem.secondary.dao.IPersonRepository;
+import com.luster.fistIdeaItem.secondary.entity.Person;
+import com.luster.fistIdeaItem.secondary.entity.QPerson;
+import com.luster.fistIdeaItem.secondary.entity.QYal;
+import com.luster.fistIdeaItem.secondary.entity.Yal;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by dell on 2017-6-29.
@@ -16,20 +23,37 @@ public class SampleController {
 
     @Autowired
     IUserRepository iUserRepository;
+
+    @Autowired
+    IPersonRepository iPersonRepository;
+
     @Autowired
     JPAQueryFactory jpaQueryFactory;
 
+    @Autowired
+    JPAQueryFactory jpaQueryFactorySecondary;
+
     @RequestMapping("/get")
+    @Transactional
     String home() {
-        return "Hello World!";
+        QUser qUser = QUser.user;
+        User user = jpaQueryFactory.selectFrom(qUser).fetchFirst();
+
+        QPerson qPerson = QPerson.person;
+        Person person = jpaQueryFactorySecondary.selectFrom(qPerson).fetchFirst();
+
+        QYal qYal=QYal.yal;
+        Yal yal=jpaQueryFactorySecondary.selectFrom(qYal).where(qYal.jingId.eq("3")).fetchFirst();
+
+        return yal.getJingId();
     }
 
-    @PostMapping("/persion/getPersion/{id}.json")
-    @ResponseBody
-    public Person getPersion(@PathVariable("id") String id) {
-        System.out.println("ID:" + id);
-        return new Person("1", "leftso", 1, "重庆.大竹林");
-    }
+//    @PostMapping("/persion/getPersion/{id}.json")
+//    @ResponseBody
+//    public Human getPersion(@PathVariable("id") String id) {
+//        System.out.println("ID:" + id);
+//        return new Human("1", "leftso", 1, "重庆.大竹林");
+//    }
 
     @RequestMapping("/getJVM")
     String getJVM() {

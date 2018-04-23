@@ -19,15 +19,18 @@ import javax.persistence.PersistenceContext;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.luster.fistIdeaItem.*"})
 @EntityScan(basePackages = {"com.luster.fistIdeaItem.entity"})
-@EnableJpaRepositories(basePackages = "com.luster.fistIdeaItem.dao")
 @EnableCaching
 public class AppApplication {
 
     @PersistenceContext
     private EntityManager em;
 
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(AppApplication.class, args);
+    @PersistenceContext(unitName = "secondaryPersistenceUnit")
+    private EntityManager emSecondary;
+
+    @Bean
+    public JPAQueryFactory jpaQueryFactorySecondary() {
+        return new JPAQueryFactory(emSecondary);
     }
 
     @Bean
@@ -35,6 +38,9 @@ public class AppApplication {
         return new JPAQueryFactory(em);
     }
 
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(AppApplication.class, args);
+    }
 
 
     /**

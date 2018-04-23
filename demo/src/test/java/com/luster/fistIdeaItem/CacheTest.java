@@ -1,7 +1,7 @@
 //package com.luster.fistIdeaItem;
 //
 //import com.luster.fistIdeaItem.app.AppApplication;
-//import com.luster.fistIdeaItem.entity.User;
+//import com.luster.fistIdeaItem.primary.entity.User;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;

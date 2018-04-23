@@ -1,4 +1,4 @@
-package com.luster.fistIdeaItem.entity;
+package com.luster.fistIdeaItem.primary.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
