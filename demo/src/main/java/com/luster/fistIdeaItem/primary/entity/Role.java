@@ -1,6 +1,9 @@
 package com.luster.fistIdeaItem.primary.entity;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,6 +20,9 @@ public class Role {
     @ManyToMany(targetEntity = User.class)
     @JoinTable(name = "role_user_mapping")
     private Set<User> users = new HashSet<>();
+
+    @CreatedDate
+    private LocalDateTime createdDate;
 
     public Long getId() {
         return id;
@@ -48,5 +54,13 @@ public class Role {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 }

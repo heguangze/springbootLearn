@@ -3,6 +3,7 @@ package com.luster.fistIdeaItem.app;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +39,8 @@ public class SecondaryConfig {
     private DataSource secondaryDataSource;
 
 
+
+
     /**
      * 构建实体管理器 EntityManager
      *
@@ -53,7 +56,7 @@ public class SecondaryConfig {
                 //设置数据源属性
                 .properties(getVendorProperties(secondaryDataSource))
                 //设置实体类所在位置.扫描所有带有 @Entity 注解的类
-                .packages("com.luster.fistIdeaItem.secondary.entity")
+                .packages("com.luster.fistIdeaItem.secondary.entity","org.springframework.data.jpa.convert.threeten")
                 // Spring会将EntityManagerFactory注入到Repository之中.有了 EntityManagerFactory之后,
                 // Repository就能用它来创建 EntityManager 了,然后 EntityManager 就可以针对数据库执行操作
                 .persistenceUnit("secondaryPersistenceUnit")
@@ -62,7 +65,9 @@ public class SecondaryConfig {
     }
 
     private Map<String, String> getVendorProperties(DataSource dataSource) {
-        return jpaProperties.getHibernateProperties(dataSource);
+        Map<String, String> map=jpaProperties.getHibernateProperties(dataSource);
+        map.put("hibernate.physical_naming_strategy","org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy");
+        return map;
     }
 
     /**

@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.persistence.EntityManager;
@@ -18,7 +19,6 @@ import javax.persistence.PersistenceContext;
  */
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.luster.fistIdeaItem.*"})
-@EntityScan(basePackages = {"com.luster.fistIdeaItem.entity"})
 @EnableCaching
 public class AppApplication {
 
